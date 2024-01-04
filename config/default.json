@@ -1,0 +1,27 @@
+{
+    "domains": {
+      "restapi":"http://localhost:3001"
+    },
+    "jwt": {
+      "ttl": {
+        "tenSec": 10,
+        "tenMins": 600,
+        "oneHour": 3600,
+        "oneDay": 86400,
+        "threeDay": 259200,
+        "sevenDay": 604800,
+        "oneMonth": 2592000,
+        "oneYear": 31536000
+      },
+      "audience": {
+        "global": "global",
+        "dashboard": "dashboard",
+        "share": "share"
+      },
+      "secrets": {
+        "global": "8001c27439650c5c5a6b4ed94163b5ddeb4476362c71380e613fa20dfffcef50",
+        "dashboard": "66cd9688a2ae068244ea01e70f0e230f5623b7fa4cdecb65070a09ec06452262",
+        "share": "c3bc45ac352fe43ff8f0a1cc26d6cc29f71f536dc417906f8513ea44ed4bb161"
+      }
+    }
+}
