@@ -223,7 +223,7 @@ curl -X POST http://localhost:3000/api/notes/:id/share \
 #### Share Note Response
 ```json
 {
-  "sharingUrl": "https://localhost:3000/api/notes/:id/share"
+  "sharingUrl": "https://localhost:3000/api/notes/:id/share?token=<share_token>"
 }
 ```
 
