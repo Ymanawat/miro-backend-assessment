@@ -53,14 +53,14 @@ export class NotesService {
     const updatedNote = await this.notesModel.findByIdAndUpdate(
       { _id: notesId },
       { $set: notesDto },
-      { new: true },
+      { __v: 0, new: true },
     );
 
     return { data: updatedNote };
   }
 
   public async getNote({ userId, notesId }): Promise<NotesResponseDto> {
-    const note = await this.notesModel.findById(notesId);
+    const note = await this.notesModel.findById(notesId).select({ __v: 0 });
     if (!note) {
       throw new NotFoundException(['No note is found with this noteId']);
     }
@@ -75,6 +75,7 @@ export class NotesService {
       .find({
         adminUserIds: { $in: [userId] },
       })
+      .select({ __v: 0 })
       .exec();
 
     return { data: notes };
@@ -125,10 +126,12 @@ export class NotesService {
 
   async searchNotes({ userId, query }): Promise<AllNotesResponseDto> {
     try {
-      const notes = await this.notesModel.find({
-        adminUserIds: userId,
-        $text: { $search: query },
-      });
+      const notes = await this.notesModel
+        .find({
+          adminUserIds: userId,
+          $text: { $search: query },
+        })
+        .select({ __v: 0 });
 
       return { data: notes };
     } catch (error) {
